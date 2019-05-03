@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(toNaviAty);
                 finish();
             }
-        },3000); // 延时3s
+        },3000); // 延时3s跳转到主导航界面
 
         //TODO：实现登录功能后恢复这一段。
         /*new Handler().postDelayed(new Runnable() {
@@ -36,7 +36,6 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
-
     private void checkLoginStatus() {
         if (AppConfig.checkAccountCachedStatus(StartActivity.this)) {
             Intent toNaviAty = new Intent(StartActivity.this,NavigationActivity.class);
@@ -44,8 +43,8 @@ public class StartActivity extends AppCompatActivity {
             finish();
         }else {
             //TODO: 实现了登录功能后：检查到未登录，跳转到登录界面。
-            //Intent toNaviAty = new Intent(StartActivity.this,NavigationActivity.class);
-            //startActivity(toNaviAty);
+            //Intent toLoginAty = new Intent(LoginActivity.this,NavigationActivity.class);
+            //startActivity(toLoginAty);
             //finish();
         }
     }

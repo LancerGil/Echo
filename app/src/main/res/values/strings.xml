@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Echo</string>
     <string name="title_activity_navigation">NavigationActivity</string>
-    <string name="navigation_home">Home</string>
-    <string name="navigation_leaderboard">Leaderboard</string>
-    <string name="navigation_user">User</string>
+    <string name="navigation_home">首页</string>
+    <string name="navigation_leaderboard">排行榜</string>
+    <string name="navigation_user">我</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
