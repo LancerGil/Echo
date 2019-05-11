@@ -1,75 +1,92 @@
 package com.example.echo.views.fragments;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.echo.R;
+import com.example.echo.adapters.BoardListPagerAdapter;
+import com.ocnyang.pagetransformerhelp.cardtransformer.AlphaAndScalePageTransformer;
 
 public class FragBoard extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG="FragBoard";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    /**
+     * 声明对象
+     */
     private OnFragmentInteractionListener mListener;
+    private BoardAppFragment boardAppFragment;
+    private ViewPager mViewPager;
 
     public FragBoard() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragBoard.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragBoard newInstance(String param1, String param2) {
-        FragBoard fragment = new FragBoard();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        return new FragBoard();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        SharedViewModel model = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-//        model.getFragLiveData().observe(this,  { item ->
-//                // update UI
-//        });
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag_board, container, false);
+        //初始化视图
+        View view = inflater.inflate(R.layout.fragment_frag_board, container, false);
+        final ViewPager viewPager = view.findViewById(R.id.vp_board);
+        mViewPager = viewPager;
+        final TabLayout tabLayout = view.findViewById(R.id.tab_choose_board);
+        //显示排行榜的viewpager的设置,
+        BoardListPagerAdapter mBoardListPagerAdapter = new BoardListPagerAdapter(getChildFragmentManager(),3);
+        viewPager.setPageMargin(30);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setPageTransformer(true,new AlphaAndScalePageTransformer());
+        viewPager.setAdapter(mBoardListPagerAdapter);
+
+        //将tablayout和viewpager绑定起来,同步变换
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        //设置监听,若点击当前正显示的fragment的对应tab,则将排行榜滚动到顶部
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) { }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                Log.d(TAG, "onTabReselected: ");
+                scrollListToTop();
+            }
+        });
+
+        //设置tablayout中item之间的margin.
+        for(int i=0; i < tabLayout.getTabCount()-1; i++) {
+            View tab = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(i);
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+            p.setMargins(0, 0, 50, 0);
+            tab.requestLayout();
+        }
+
+        return view;
     }
+
+    /**
+     * 外部方法:
+     * 将排行榜滚动到顶部
+     */
+    public void scrollListToTop(){
+        boardAppFragment = (BoardAppFragment)getChildFragmentManager().findFragmentByTag("android:switcher:" + R.id.vp_board + ":" + mViewPager.getCurrentItem());
+        boardAppFragment.scrollResyclerViewTo(0);
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

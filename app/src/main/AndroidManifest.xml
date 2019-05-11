@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:theme="@style/AtyTheme"
             android:name=".views.activities.NavigationActivity"
-            android:label="@string/title_activity_navigation"></activity>
-        <activity android:name=".views.activities.StartActivity">
+            android:label="@string/title_activity_navigation"/>
+        <activity android:name=".views.activities.StartActivity"
+            android:theme="@style/AtyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

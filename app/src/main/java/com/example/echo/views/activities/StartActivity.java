@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(toNaviAty);
                 finish();
             }
-        },3000); // 延时3s跳转到主导航界面
+        },2000); // 延时3s跳转到主导航界面
 
         //TODO：实现登录功能后恢复这一段。
         /*new Handler().postDelayed(new Runnable() {

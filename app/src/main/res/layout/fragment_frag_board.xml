@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,18 +9,53 @@
 
     <include layout="@layout/searchview_appbar" />
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_choose_board"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:tabBackground="@drawable/bg_app_logo"
+        app:tabGravity="center"
+        app:tabIndicator="@android:drawable/button_onoff_indicator_off"
+        app:tabIndicatorColor="@android:color/holo_green_dark"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="3dp"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@android:color/holo_green_dark"
+        app:tabTextColor="@color/colorPrimary">
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="新品APP" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="热门APP" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="用心开发者" />
+
+    </android.support.design.widget.TabLayout>
+
+    <LinearLayout
+        android:paddingTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_shadow_end_color"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        android:orientation="vertical"
+        android:clipChildren="false">
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/vp_header"
+            android:id="@+id/vp_board"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:clipChildren="false"/>
 
-    </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -8,6 +8,7 @@
     tools:context=".views.activities.NavigationActivity">
 
     <FrameLayout
+        android:fitsSystemWindows="true"
         android:id="@+id/frag_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,12 +19,14 @@
         app:layout_constraintVertical_bias="0.505" />
 
     <android.support.design.widget.BottomNavigationView
+        app:itemIconTint="@color/ic_home_selector"
+        app:itemTextColor="@color/ic_home_selector"
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="@drawable/bg_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".views.fragments.FragHome">
 
-   <include layout="@layout/searchview_appbar"/>
+    <include layout="@layout/searchview_appbar" />
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_shadow_end_color"
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -20,15 +20,193 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_header"
+            <FrameLayout
+                android:id="@+id/banner_container"
                 android:layout_width="match_parent"
-                android:layout_height="230dp" />
+                android:layout_height="230dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_stu_list"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/bannerTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/bg_banner_title"
+                    android:gravity="start"
+                    android:padding="3dp"
+                    android:text="标题1"
+                    android:textColor="@android:color/black" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:clipChildren="false"
+                android:layout_marginTop="15dp"
+                android:id="@+id/hot_app_home"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/hot_app_board_title"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="热门app排行榜"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/hot_app_board_show"
+                        android:layout_alignBaseline="@id/hot_app_board_title"
+                        android:textSize="16sp"
+                        android:text="全部表示"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:clipChildren="false"
+                    android:id="@+id/vp_hot_app_board"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="245dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:clipChildren="false"
+                android:layout_marginTop="10dp"
+                android:id="@+id/new_app_home"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/new_app_board_title"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="新品app排行榜"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/new_app_board_show"
+                        android:layout_alignBaseline="@id/new_app_board_title"
+                        android:textSize="16sp"
+                        android:text="全部表示"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:clipChildren="false"
+                    android:id="@+id/vp_new_app_board"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="245dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:clipChildren="false"
+                android:layout_marginTop="10dp"
+                android:id="@+id/dev_board_home"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/dev_board_title"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="用心开发者排行榜"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/dev_board_show"
+                        android:layout_alignBaseline="@id/dev_board_title"
+                        android:textSize="16sp"
+                        android:text="全部表示"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <android.support.v4.view.ViewPager
+                    android:clipChildren="false"
+                    android:id="@+id/vp_dev_board_home"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
