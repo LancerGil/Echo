@@ -1,5 +1,6 @@
 package com.example.echo.views.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,14 +19,14 @@ import com.example.echo.R;
 import com.example.echo.views.fragments.BoardAppFragment;
 import com.example.echo.views.fragments.FragBoard;
 import com.example.echo.views.fragments.FragHome;
-import com.example.echo.entities.DummyContent;
+import com.example.echo.entities.AppContentInList;
 
-public class NavigationActivity extends AppCompatActivity implements FragBoard.OnFragmentInteractionListener,FragHome.OnFragmentInteractionListener, BoardAppFragment.OnListFragmentInteractionListener {
+public class NavigationActivity extends AppCompatActivity implements FragBoard.OnFragmentInteractionListener, FragHome.OnFragmentInteractionListener, BoardAppFragment.OnListFragmentInteractionListener {
     private TextView mTextMessage;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     //TODO: LQ -> 添加声明变量：用户个人页面的fragment
-    private Fragment fragHome,fragBoard;
+    private Fragment fragHome, fragBoard;
     private int unSelectNaviId;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
@@ -38,7 +39,7 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN| View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         Fragment fragHome = new FragHome();
-        transaction.replace(R.id.frag_container,fragHome);
+        transaction.replace(R.id.frag_container, fragHome);
         transaction.commit();
 
         /**
@@ -67,19 +68,19 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frag_container);
-                if(unSelectNaviId == item.getItemId()){
-                    switch (item.getItemId()){
+                if (unSelectNaviId == item.getItemId()) {
+                    switch (item.getItemId()) {
                         case R.id.navigation_home:
-                            ((FragHome)fragment).scrollViewTo(0,0);
+                            ((FragHome) fragment).scrollViewTo(0, 0);
                             break;
                         case R.id.navigation_leaderboard:
-                            ((FragBoard)fragment).scrollListToTop();
+                            ((FragBoard) fragment).scrollListToTop();
                             break;
                         case R.id.navigation_user:
                             //TODO: LQ -> 第二次点击同一个的tab.刷新用户页面.
                             break;
                     }
-                }else {
+                } else {
                     transaction = fragmentManager.beginTransaction();
                     Fragment newFrag = new FragHome();
                     switch (item.getItemId()) {
@@ -107,14 +108,20 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+    public void onListFragmentInteraction(AppContentInList.DummyAppInListItem item) {
+        Intent toAppDetails = new Intent(NavigationActivity.this,AppDetailsActivity.class);
+        toAppDetails.putExtra("appName",item.id);
+        toAppDetails.putExtra("appContent",item.content);
+        toAppDetails.putExtra("appDetails",item.details);
+        startActivity(toAppDetails);
+        overridePendingTransition(R.anim.ani_right_get_into, R.anim.ani_left_sign_out);
     }
 
 }

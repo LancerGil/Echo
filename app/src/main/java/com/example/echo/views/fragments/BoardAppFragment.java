@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.echo.R;
-import com.example.echo.adapters.MyBoardAppRecyclerViewAdapter;
-import com.example.echo.entities.DummyContent;
-import com.example.echo.entities.DummyContent.DummyItem;
+import com.example.echo.adapters.AppRVAdapter;
+import com.example.echo.entities.AppContentInList;
+import com.example.echo.entities.AppContentInList.DummyAppInListItem;
 
 /**
  * A fragment representing a list of Items.
@@ -64,7 +64,17 @@ public class BoardAppFragment extends Fragment {
         Context context = view.getContext();
         recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MyBoardAppRecyclerViewAdapter(DummyContent.ITEMS, mItemIndex, mListener));
+        recyclerView.setAdapter(new AppRVAdapter(AppContentInList.ITEMS, mItemIndex, mListener));
+        if (mItemIndex >= 0) {
+            //设置recyclerView不滚动，从而恢复scrollview惯性滚动
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            recyclerView.setLayoutManager(layoutManager);
+        }
 
         return view;
     }
@@ -103,6 +113,6 @@ public class BoardAppFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(DummyAppInListItem item);
     }
 }

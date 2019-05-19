@@ -46,7 +46,7 @@ public class FragBoard extends Fragment {
         //显示排行榜的viewpager的设置,
         BoardListPagerAdapter mBoardListPagerAdapter = new BoardListPagerAdapter(getChildFragmentManager(),3);
         viewPager.setPageMargin(30);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setPageTransformer(true,new AlphaAndScalePageTransformer());
         viewPager.setAdapter(mBoardListPagerAdapter);
 

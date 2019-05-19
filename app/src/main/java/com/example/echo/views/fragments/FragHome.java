@@ -32,7 +32,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FragHome extends Fragment {
-    private static final String TAG="FragHome";
+    private static final String TAG = "FragHome";
 
     /**
      * 声明对象
@@ -55,7 +55,7 @@ public class FragHome extends Fragment {
     //轮转图片的ID列表&标题
     private static final int[] bannerResId = new int[]{R.drawable.header2,
             R.drawable.header0, R.drawable.header1, R.drawable.header2, R.drawable.header0};
-    private static final String[] bannerTitles = new String[]{"Title3","Title1","Title2","Title3","Title1"};
+    private static final String[] bannerTitles = new String[]{"Title3", "Title1", "Title2", "Title3", "Title1"};
 
     /**
      * 初始化Views
@@ -83,15 +83,15 @@ public class FragHome extends Fragment {
         nestedScrollView = view.findViewById(R.id.scroll_view);
 
         //设置轮转图
-        initbanner(view,getContext());
+        initbanner(view, getContext());
 
         //设置简略版排行榜
-        initSimpleBoard(view,getContext());
+        initSimpleBoard(view, getContext());
         return view;
     }
 
     @SuppressLint("HandlerLeak")
-    private void initbanner(View view, Context context){
+    private void initbanner(View view, Context context) {
         //设置banner父容器的高度，使banner长宽比为16：9
         final FrameLayout bannerContainer = view.findViewById(R.id.banner_container);
         ViewGroup.LayoutParams layoutParams = bannerContainer.getLayoutParams();
@@ -136,24 +136,28 @@ public class FragHome extends Fragment {
          */
         banner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
             @Override
             public void onPageSelected(int position) {
                 bannerPosition = position;
                 //设置标题
                 bannerTitle.setText(bannerTitles[position]);
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
                 //若viewpager滑动未停止:停止计时器；直接返回。
                 if (state != ViewPager.SCROLL_STATE_IDLE) {
-                    if(timer!=null) {
+                    if (timer != null) {
                         timer.cancel();
                         timer.purge();
                         timer = null;
                     }
                     return;
-                };
+                }
+                ;
 
                 //重启计时器
                 timer = new Timer(true);
@@ -164,7 +168,7 @@ public class FragHome extends Fragment {
                 if (bannerPosition == 0) {
                     banner.setCurrentItem(viewList.size() - 2, false);
                 } else if (bannerPosition == viewList.size() - 1) {
-                //若当前为倒数第一张，设置页面为第二张
+                    //若当前为倒数第一张，设置页面为第二张
                     banner.setCurrentItem(1, false);
                 }
 
@@ -229,8 +233,9 @@ public class FragHome extends Fragment {
             pagerScrolling = true;
         }
     }
+
     //计时器每一轮的操作
-    class BannerTimerTask extends TimerTask{
+    class BannerTimerTask extends TimerTask {
         @Override
         public void run() {
             viewPagerScrollHandler.sendEmptyMessage(1);
@@ -239,11 +244,12 @@ public class FragHome extends Fragment {
 
     /**
      * 简略版排行版 - 3个viewpager.
+     *
      * @param view
      * @param context
      */
-    private void initSimpleBoard(View view, Context context){
-        final ViewPager vpHotApp,vpNewApp,vpDev;
+    private void initSimpleBoard(View view, Context context) {
+        final ViewPager vpHotApp, vpNewApp, vpDev;
         vpHotApp = view.findViewById(R.id.vp_hot_app_board);
         vpNewApp = view.findViewById(R.id.vp_new_app_board);
         vpDev = view.findViewById(R.id.vp_dev_board_home);
@@ -255,23 +261,24 @@ public class FragHome extends Fragment {
 
     /**
      * 设置单个viewpager: page间隔 + 缓存个数 + 适配器adapter
+     *
      * @param viewPager
      */
-    private void setupBoardViewPagers(ViewPager viewPager){
-        BoardListPagerAdapter mBoardListPagerAdapter = new BoardListPagerAdapter(getChildFragmentManager(),4);
+    private void setupBoardViewPagers(ViewPager viewPager) {
+        BoardListPagerAdapter mBoardListPagerAdapter = new BoardListPagerAdapter(getChildFragmentManager(), 4);
         viewPager.setPageMargin(30);
-        viewPager.setOffscreenPageLimit(3);
 //        viewPager.setPageTransformer(true,new AlphaPageTransformer());
         viewPager.setAdapter(mBoardListPagerAdapter);
     }
 
     /**
      * 提供给外部的方法:滚动视图至 x,y
+     *
      * @param x
      * @param y
      */
-    public void scrollViewTo(int x,int y){
-        nestedScrollView.smoothScrollTo(x,y);
+    public void scrollViewTo(int x, int y) {
+        nestedScrollView.smoothScrollTo(x, y);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -294,7 +301,7 @@ public class FragHome extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        if(timer!=null){
+        if (timer != null) {
             timer.cancel();
             timer.purge();
         }
