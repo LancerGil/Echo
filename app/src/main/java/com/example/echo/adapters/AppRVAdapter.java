@@ -37,7 +37,7 @@ public class AppRVAdapter extends RecyclerView.Adapter<AppRVAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder-viewType: " + viewType);
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_boardapp, parent, false);
+                .inflate(R.layout.item_app_in_list, parent, false);
         return new ViewHolder(view);
     }
 

@@ -9,14 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".views.CommentDetailActivity"></activity>
         <activity
-            android:theme="@style/AtyTheme" android:name=".views.activities.AddAppCommentActivity"/>
+            android:name=".views.activities.AddAppCommentActivity"
+            android:theme="@style/AtyTheme" />
         <activity
-            android:theme="@style/AtyTheme" android:name=".views.activities.AppDetailsActivity"  />
+            android:name=".views.activities.AppDetailsActivity"
+            android:theme="@style/AtyTheme" />
         <activity
-            android:theme="@style/AtyTheme"
             android:name=".views.activities.NavigationActivity"
-            android:label="@string/title_activity_navigation"/>
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AtyTheme" />
         <activity
             android:name=".views.activities.StartActivity"
             android:theme="@style/AtyTheme">

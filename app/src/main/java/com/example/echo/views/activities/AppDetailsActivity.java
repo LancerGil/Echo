@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.example.echo.R;
 import com.example.echo.adapters.AppCommentRVAdapter;
 import com.example.echo.entities.CommentContent;
 import com.jude.swipbackhelper.SwipeBackHelper;
+
+import java.util.zip.Inflater;
 
 public class AppDetailsActivity extends AppCompatActivity {
     private final static String TAG = "AppDetailsActivity";
@@ -127,6 +130,12 @@ public class AppDetailsActivity extends AppCompatActivity {
                     tvAppAnnounce.setMaxLines(2);
                 }
             }
+        });
+
+        ivAddComment.setOnClickListener(v -> {
+            Intent toAddComment = new Intent(AppDetailsActivity.this,AddAppCommentActivity.class);
+            startActivity(toAddComment);
+            overridePendingTransition(R.anim.ani_right_get_into, R.anim.ani_left_sign_out);
         });
     }
 
