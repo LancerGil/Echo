@@ -115,7 +115,7 @@ public class AppDetailsActivity extends AppCompatActivity {
             onBackPressed();
         });
 
-        tvInteractAnnounce.setOnClickListener(new View.OnClickListener() {
+         tvInteractAnnounce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isAnnounceFolded) {
