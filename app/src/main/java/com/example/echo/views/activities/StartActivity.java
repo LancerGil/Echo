@@ -17,13 +17,10 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TODO：实现登录功能后删除这一段。
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent toNaviAty = new Intent(StartActivity.this,NavigationActivity.class);
-                startActivity(toNaviAty);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent toNaviAty = new Intent(StartActivity.this,NavigationActivity.class);
+            startActivity(toNaviAty);
+            finish();
         },2000); // 延时3s跳转到主导航界面
 
         //TODO：实现登录功能后恢复这一段。

@@ -115,22 +115,19 @@ public class AppDetailsActivity extends AppCompatActivity {
             onBackPressed();
         });
 
-         tvInteractAnnounce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isAnnounceFolded) {
-                    isAnnounceFolded = false;
-                    tvInteractAnnounce.setText("收起");
-                    tvAppAnnounce.setEllipsize(null);
-                    tvAppAnnounce.setMaxLines(Integer.MAX_VALUE);
-                } else {
-                    isAnnounceFolded = true;
-                    tvInteractAnnounce.setText("展开");
-                    tvAppAnnounce.setEllipsize(TextUtils.TruncateAt.END);
-                    tvAppAnnounce.setMaxLines(2);
-                }
-            }
-        });
+         tvInteractAnnounce.setOnClickListener(v -> {
+             if (isAnnounceFolded) {
+                 isAnnounceFolded = false;
+                 tvInteractAnnounce.setText("收起");
+                 tvAppAnnounce.setEllipsize(null);
+                 tvAppAnnounce.setMaxLines(Integer.MAX_VALUE);
+             } else {
+                 isAnnounceFolded = true;
+                 tvInteractAnnounce.setText("展开");
+                 tvAppAnnounce.setEllipsize(TextUtils.TruncateAt.END);
+                 tvAppAnnounce.setMaxLines(2);
+             }
+         });
 
         ivAddComment.setOnClickListener(v -> {
             Intent toAddComment = new Intent(AppDetailsActivity.this,AddAppCommentActivity.class);

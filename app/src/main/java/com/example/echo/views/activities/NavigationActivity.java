@@ -25,7 +25,7 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
     private TextView mTextMessage;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-    //TODO: LQ -> 添加声明变量：用户个人页面的fragment
+    //TODO: LQ -> 添加声明变量：用户个人页面的fragment。
     private Fragment fragHome, fragBoard;
     private int unSelectNaviId;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
