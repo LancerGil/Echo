@@ -19,14 +19,15 @@ import com.example.echo.R;
 import com.example.echo.views.fragments.BoardAppFragment;
 import com.example.echo.views.fragments.FragBoard;
 import com.example.echo.views.fragments.FragHome;
+import com.example.echo.views.fragments.FragMe;
 import com.example.echo.entities.AppContentInList;
 
 public class NavigationActivity extends AppCompatActivity implements FragBoard.OnFragmentInteractionListener, FragHome.OnFragmentInteractionListener, BoardAppFragment.OnListFragmentInteractionListener {
     private TextView mTextMessage;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-    //TODO: LQ -> 添加声明变量：用户个人页面的fragment。
-    private Fragment fragHome, fragBoard;
+    //TODO: LQ -> 添加声明变量：用户个人页面的fragment
+    private Fragment fragHome, fragBoard, fragMe;
     private int unSelectNaviId;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
@@ -78,6 +79,7 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
                             break;
                         case R.id.navigation_user:
                             //TODO: LQ -> 第二次点击同一个的tab.刷新用户页面.
+                            ((FragMe) fragment).scrollViewTo(0, 0);
                             break;
                     }
                 } else {
@@ -89,7 +91,7 @@ public class NavigationActivity extends AppCompatActivity implements FragBoard.O
                             break;
                         case R.id.navigation_user:
                             //TODO: LQ -> 创建用户个人页面的fragment.
-                            newFrag = new FragBoard();
+                            newFrag = new FragMe();
                             break;
                     }
                     transaction.replace(R.id.frag_container, newFrag);

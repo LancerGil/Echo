@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -21,8 +20,6 @@ import com.example.echo.R;
 import com.example.echo.adapters.AppCommentRVAdapter;
 import com.example.echo.entities.CommentContent;
 import com.jude.swipbackhelper.SwipeBackHelper;
-
-import java.util.zip.Inflater;
 
 public class AppDetailsActivity extends AppCompatActivity {
     private final static String TAG = "AppDetailsActivity";
@@ -115,24 +112,21 @@ public class AppDetailsActivity extends AppCompatActivity {
             onBackPressed();
         });
 
-         tvInteractAnnounce.setOnClickListener(v -> {
-             if (isAnnounceFolded) {
-                 isAnnounceFolded = false;
-                 tvInteractAnnounce.setText("收起");
-                 tvAppAnnounce.setEllipsize(null);
-                 tvAppAnnounce.setMaxLines(Integer.MAX_VALUE);
-             } else {
-                 isAnnounceFolded = true;
-                 tvInteractAnnounce.setText("展开");
-                 tvAppAnnounce.setEllipsize(TextUtils.TruncateAt.END);
-                 tvAppAnnounce.setMaxLines(2);
-             }
-         });
-
-        ivAddComment.setOnClickListener(v -> {
-            Intent toAddComment = new Intent(AppDetailsActivity.this,AddAppCommentActivity.class);
-            startActivity(toAddComment);
-            overridePendingTransition(R.anim.ani_right_get_into, R.anim.ani_left_sign_out);
+         tvInteractAnnounce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isAnnounceFolded) {
+                    isAnnounceFolded = false;
+                    tvInteractAnnounce.setText("收起");
+                    tvAppAnnounce.setEllipsize(null);
+                    tvAppAnnounce.setMaxLines(Integer.MAX_VALUE);
+                } else {
+                    isAnnounceFolded = true;
+                    tvInteractAnnounce.setText("展开");
+                    tvAppAnnounce.setEllipsize(TextUtils.TruncateAt.END);
+                    tvAppAnnounce.setMaxLines(2);
+                }
+            }
         });
     }
 
