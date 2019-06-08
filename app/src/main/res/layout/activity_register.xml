@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context=".views.activities.RegisterActivity">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_avatar"
+        android:src="@drawable/avatar"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="昵称"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/reg_name"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="25sp"
+            android:background="@drawable/edit_background" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:text="性别"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <Spinner
+            android:id="@+id/selectSex"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="25sp"
+            android:entries="@array/sex"
+            android:spinnerMode="dialog" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:text="邮箱"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/reg_phone"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:maxLines="1"
+            android:inputType="textEmailAddress"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="25sp"
+            android:background="@drawable/edit_background" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:text="密码"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_background"
+            android:ems="10"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="90dp"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:text="确认密码"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/passwordAgain"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_background"
+            android:ems="10"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/login_btn"
+        android:text="注册"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+</LinearLayout>

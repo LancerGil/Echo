@@ -9,7 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.CommentDetailActivity"></activity>
+        <activity android:name=".views.activities.CommentDetailActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.ChangePasswordActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.ForgetPassordActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.LoginActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.RegisterActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.SpinnerActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.UserInfoActivity"
+            android:theme="@style/AtyTheme"/>
+        <activity android:name=".views.activities.VerifyActivity"
+            android:theme="@style/AtyTheme"/>
         <activity
             android:name=".views.activities.AddAppCommentActivity"
             android:theme="@style/AtyTheme" />
