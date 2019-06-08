@@ -13,6 +13,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/app_feedback"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -24,6 +25,7 @@
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/my_feedback"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"

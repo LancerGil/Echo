@@ -21,6 +21,7 @@
                 app:cardCornerRadius="30dp"
                 app:cardElevation="0dp">
                 <ImageView
+                    android:id="@+id/feedback_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/avatar"/>
@@ -33,14 +34,21 @@
             android:layout_marginEnd="15dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/feedback_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="60dp"
                 android:gravity="center_vertical"
                 android:text="我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行我觉得不行"/>
-
+            <TextView
+                android:id="@+id/feedback_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2019.9.15"
+                android:layout_marginBottom="5dp"
+                android:gravity="end"/>
             <View
-                android:id="@+id/underline"
+                android:id="@+id/feedback_underline"
                 android:layout_alignParentBottom="true"
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"

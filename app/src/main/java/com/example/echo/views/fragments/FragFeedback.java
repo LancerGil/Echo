@@ -1,53 +1,48 @@
 package com.example.echo.views.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.echo.R;
+import com.example.echo.adapters.AppRVAdapter;
+import com.example.echo.adapters.FeedbackListAdapter;
+import com.example.echo.entities.FeedbackContent;
+import com.example.echo.entities.FeedbackContent.DummyFeedbackItem;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragFeedback.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragFeedback#newInstance} factory method to
- * create an instance of this fragment.
+ * A fragment representing a list of Items.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * interface.
  */
 public class FragFeedback extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = "FragFeedback";
 
-    private OnFragmentInteractionListener mListener;
-
-    public FragFeedback() {
-        // Required empty public constructor
-    }
+    private static final String ARG_ITEM_INDEX = "item_index";
+    private int mItemIndex = 1;
+    private OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragFeedback.
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
      */
-    // TODO: Rename and change types and number of parameters
-    public static FragFeedback newInstance(String param1, String param2) {
+    public FragFeedback() {
+    }
+
+    // TODO: Customize parameter initialization
+    @SuppressWarnings("unused")
+    public static FragFeedback newInstance(int itemIndex) {
         FragFeedback fragment = new FragFeedback();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_ITEM_INDEX, itemIndex);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,34 +50,49 @@ public class FragFeedback extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mItemIndex = getArguments().getInt(ARG_ITEM_INDEX);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag_feedback, container, false);
+        View view = inflater.inflate(R.layout.fragment_feedback_list, container, false);
+
+        // Set the adapter
+        Context context = view.getContext();
+        recyclerView = view.findViewById(R.id.feedbackList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+//        recyclerView.setAdapter(new FeedbackListAdapter(FeedbackContent.ITEMS, mItemIndex, mListener));
+        if (mItemIndex >= 0) {
+            //设置recyclerView不滚动，从而恢复scrollview惯性滚动
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            };
+            recyclerView.setLayoutManager(layoutManager);
+        }
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void scrollResyclerViewTo(int position) {
+        recyclerView.smoothScrollToPosition(position);
     }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnListFragmentInteractionListener");
         }
     }
 
@@ -97,13 +107,13 @@ public class FragFeedback extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onListFragmentInteraction(DummyFeedbackItem item);
     }
 }
